@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        final double MS_A_YEAR = 31557600000L;
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter birth year: ");
@@ -16,8 +17,7 @@ public class Main {
         Calendar dob = Calendar.getInstance();
         dob.set(year, month, day);
         double ageMs = today.getTime().getTime() - dob.getTime().getTime();
-        final double msAYear = 31557600000L;
-        double age = ageMs / msAYear;
+        double age = ageMs / MS_A_YEAR;
 
         System.out.format("You are %.2f years old", age);
     }
