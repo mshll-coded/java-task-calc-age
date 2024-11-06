@@ -19,6 +19,7 @@ public class Main {
         double ageMs = today.getTime().getTime() - dob.getTime().getTime();
         double age = ageMs / MS_A_YEAR;
 
-        System.out.format("You are %.2f years old", age);
+        System.out.format("You are %.2f years old\n", age);
+        scanner.close();
     }
 }
