@@ -1,9 +1,10 @@
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Calendar;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        final double MS_A_YEAR = 31557600000L;
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter birth year: ");
@@ -16,10 +17,17 @@ public class Main {
         Calendar today = Calendar.getInstance();
         Calendar dob = Calendar.getInstance();
         dob.set(year, month, day);
-        double ageMs = today.getTime().getTime() - dob.getTime().getTime();
-        double age = ageMs / MS_A_YEAR;
 
-        System.out.format("You are %.2f years old\n", age);
+        LocalDate localToday = LocalDate.of(today.get(Calendar.YEAR), today.get(Calendar.MONTH) + 1, today.get(Calendar.DAY_OF_MONTH));
+        LocalDate localDob = LocalDate.of(dob.get(Calendar.YEAR), dob.get(Calendar.MONTH) + 1, dob.get(Calendar.DAY_OF_MONTH));
+        Period period = Period.between(localDob, localToday);
+
+        int years = period.getYears();
+        int months = period.getMonths();
+        int days = period.getDays();
+
+
+        System.out.println("You are " + years + " years, " + months + " months, " + days + " days old");
         scanner.close();
     }
 }
